@@ -193,14 +193,38 @@ chore: 构建过程或辅助工具的变动
 
 ## 部署
 
-### Docker 部署
-```bash
-# 构建镜像
-docker-compose build
+### Docker 部署（后端）
 
-# 启动服务
-docker-compose up -d
+后端已提供完整的 Docker 配置，位于 `backend/` 目录：
+
+- `backend/.dockerignore`: 精简构建上下文
+- `backend/Dockerfile`: 构建 Django 应用镜像
+- `backend/entrypoint.sh`: 容器启动脚本（等待数据库、迁移、启动 Gunicorn）
+- `backend/gunicorn.conf.py`: Gunicorn 配置
+- `backend/docker-compose.yml`: 本地/服务器一键启动（包含 Postgres）
+
+使用方法：
+
+```bash
+# 进入后端目录
+cd backend
+
+# 准备环境变量（可直接复制 env.example）
+copy env.example .env   # Windows PowerShell 使用：Copy-Item env.example .env
+
+# 构建并启动（首次会拉取 Postgres）
+docker-compose up -d --build
+
+# 查看日志
+docker-compose logs -f --tail 100
+
+# 停止并移除
+docker-compose down
 ```
+
+默认对外暴露端口：
+- 应用服务：`http://localhost:8000`
+- 数据库：`localhost:5432`（用户名/密码：`postgres/postgres`）
 
 ### 传统部署
 1. 构建前端项目
