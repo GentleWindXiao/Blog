@@ -1,0 +1,51 @@
+﻿# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build outputs
+/dist/
+/build/
+/.cache/
+/.tmp/
+frontend/dist/
+backend/dist/
+frontend/.vite/
+
+# Nuxt / VuePress / VitePress
+.nuxt/
+.output/
+.cache/
+.temp/
+.vitepress/cache/
+.vuepress/dist/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Test coverage
+coverage/
+
+# Uploads / runtime
+uploads/
+
+# Misc
+*.local
+*.swp
+*.swo
