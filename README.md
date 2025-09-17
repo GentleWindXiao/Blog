@@ -6,29 +6,49 @@
 
 ```
 Blog/
-├─ frontend/       ← Vue/Nuxt 或 VuePress/VitePress 前端项目
-├─ backend/        ← Express/Node.js 后端 API
+├─ frontend/                    ← Vue.js 前端项目
+│  ├─ src/
+│  │  ├─ components/           ← Vue 组件
+│  │  ├─ views/               ← 页面视图
+│  │  ├─ router/              ← 路由配置
+│  │  ├─ stores/              ← Pinia 状态管理
+│  │  ├─ assets/              ← 静态资源
+│  │  └─ utils/               ← 工具函数
+│  ├─ public/                 ← 公共资源
+│  ├─ package.json            ← 前端依赖
+│  ├─ vite.config.js          ← Vite 配置
+│  └─ index.html              ← 入口文件
+├─ backend/                    ← Django 后端 API
+│  ├─ blog_project/           ← Django 项目配置
+│  │  ├─ settings.py          ← 项目设置
+│  │  ├─ urls.py              ← 主路由
+│  │  └─ wsgi.py              ← WSGI 配置
+│  ├─ accounts/               ← 用户管理应用
+│  ├─ posts/                  ← 文章管理应用
+│  ├─ comments/               ← 评论管理应用
+│  ├─ manage.py               ← Django 管理脚本
+│  ├─ requirements.txt        ← Python 依赖
+│  └─ env.example             ← 环境变量示例
 └─ README.md
 ```
 
 ## 技术栈
 
 ### 前端 (frontend/)
-- **框架**: Vue.js / Nuxt.js / VuePress / VitePress
-- **构建工具**: Vite / Webpack
-- **UI框架**: Element Plus / Ant Design Vue / Vuetify
-- **状态管理**: Pinia / Vuex
+- **框架**: Vue.js 3
+- **构建工具**: Vite
+- **状态管理**: Pinia
 - **路由**: Vue Router
-- **样式**: CSS3 / SCSS / Tailwind CSS
+- **HTTP客户端**: Axios
+- **样式**: CSS3 / SCSS
+- **部署**: Vercel
 
 ### 后端 (backend/)
-- **运行时**: Node.js
-- **框架**: Express.js
-- **数据库**: MongoDB / MySQL / PostgreSQL
-- **ORM/ODM**: Mongoose / Sequelize / Prisma
-- **认证**: JWT / Passport.js
-- **文件上传**: Multer
-- **API文档**: Swagger / OpenAPI
+- **框架**: Django + Django REST Framework
+- **数据库**: PostgreSQL (生产) / SQLite (开发)
+- **认证**: JWT / Session
+- **跨域**: django-cors-headers
+- **部署**: Render
 
 ## 功能特性
 
@@ -56,8 +76,8 @@ Blog/
 
 ### 环境要求
 - Node.js >= 16.0.0
-- npm >= 8.0.0 或 yarn >= 1.22.0
-- MongoDB / MySQL / PostgreSQL (根据后端配置)
+- Python >= 3.8
+- PostgreSQL (生产环境)
 
 ### 安装依赖
 
@@ -67,18 +87,18 @@ cd frontend
 npm install
 
 # 安装后端依赖
-cd ../backend
-npm install
+cd backend
+pip install -r requirements.txt
 ```
 
 ### 开发环境启动
 
 ```bash
-# 启动后端服务 (端口: 3000)
+# 启动后端服务 (端口: 8000)
 cd backend
-npm run dev
+python manage.py runserver
 
-# 启动前端服务 (端口: 3001)
+# 启动前端服务 (端口: 3000)
 cd frontend
 npm run dev
 ```
@@ -90,47 +110,45 @@ npm run dev
 cd frontend
 npm run build
 
-# 启动后端生产服务
-cd backend
-npm start
+# 部署后端 (Render)
+# 前端部署到 Vercel
 ```
 
 ## 配置说明
 
 ### 环境变量
 
-#### 后端环境变量 (.env)
+#### 后端环境变量 (env.example)
 ```env
-# 服务器配置
-PORT=3000
-NODE_ENV=development
+# Django 配置
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
 
 # 数据库配置
-DB_HOST=localhost
-DB_PORT=27017
+DB_ENGINE=django.db.backends.postgresql
 DB_NAME=blog_db
-DB_USER=your_username
-DB_PASSWORD=your_password
+DB_USER=postgres
+DB_PASSWORD=password
+DB_HOST=localhost
+DB_PORT=5432
 
-# JWT配置
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=7d
-
-# 文件上传配置
-UPLOAD_PATH=./uploads
-MAX_FILE_SIZE=5242880
+# Redis 配置
+REDIS_URL=redis://localhost:6379/0
 
 # 邮件配置
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_password
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-password
+DEFAULT_FROM_EMAIL=noreply@blog.com
 ```
 
-#### 前端环境变量 (.env)
+#### 前端环境变量 (env.example)
 ```env
 # API配置
-VITE_API_BASE_URL=http://localhost:3000/api
+VITE_API_BASE_URL=http://localhost:8000/api
 VITE_APP_TITLE=我的博客
 VITE_APP_DESCRIPTION=一个现代化的博客系统
 ```
@@ -204,8 +222,23 @@ docker-compose up -d
 
 ## 联系方式
 
-- 项目链接: [https://github.com/yourusername/blog](https://github.com/yourusername/blog)
-- 问题反馈: [https://github.com/yourusername/blog/issues](https://github.com/yourusername/blog/issues)
+- 项目链接: [https://github.com/GentleWindXiao/Blog](https://github.com/GentleWindXiao/Blog)
+- 问题反馈: [https://github.com/GentleWindXiao/Blog/issues](https://github.com/GentleWindXiao/Blog/issues)
+
+---
+
+## 🤖 AI 生成说明
+
+> **本项目由 AI 辅助生成**
+> 
+> 本项目的基础架构、项目结构、配置文件等均由 AI 助手协助创建，包括：
+> - Vue.js 前端项目脚手架搭建
+> - Django 后端项目架构设计
+> - 前后端分离配置
+> - 开发环境配置
+> - 部署架构规划
+> 
+> 具体功能实现和业务逻辑由开发者完成。
 
 ---
 
