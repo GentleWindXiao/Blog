@@ -8,8 +8,10 @@
         <ul>
           <li><strong>前端:</strong> Vue.js 3 + Vite + Pinia</li>
           <li><strong>后端:</strong> Django + Django REST Framework</li>
-          <li><strong>部署:</strong> Vercel (前端) + Render (后端)</li>
-          <li><strong>数据库:</strong> PostgreSQL</li>
+          <li><strong>部署:</strong> 阿里云ECS + 宝塔Linux</li>
+          <li><strong>数据库:</strong> MySQL 8.0+ (阿里云RDS)</li>
+          <li><strong>缓存:</strong> Redis (阿里云Redis)</li>
+          <li><strong>邮件:</strong> 阿里云邮件服务</li>
         </ul>
       </section>
       
