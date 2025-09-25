@@ -41,14 +41,14 @@ Blog/
 - **路由**: Vue Router
 - **HTTP客户端**: Axios
 - **样式**: CSS3 / SCSS
-- **部署**: Vercel
+- **部署**: 阿里云 + 宝塔Linux
 
 ### 后端 (backend/)
 - **框架**: Django + Django REST Framework
-- **数据库**: PostgreSQL (生产) / SQLite (开发)
+- **数据库**: MySQL (生产) / SQLite (开发)
 - **认证**: JWT / Session
 - **跨域**: django-cors-headers
-- **部署**: Render
+- **部署**: 阿里云 + 宝塔Linux
 
 ## 功能特性
 
@@ -110,8 +110,8 @@ npm run dev
 cd frontend
 npm run build
 
-# 部署后端 (Render)
-# 前端部署到 Vercel
+# 部署到阿里云 + 宝塔Linux
+# 详见部署指南章节
 ```
 
 ## 配置说明
@@ -122,33 +122,33 @@ npm run build
 ```env
 # Django 配置
 SECRET_KEY=your-secret-key-here
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
+DEBUG=False
+ALLOWED_HOSTS=your-domain.com,www.your-domain.com,your-server-ip
 
-# 数据库配置
-DB_ENGINE=django.db.backends.postgresql
+# 数据库配置 (阿里云RDS MySQL)
+DB_ENGINE=django.db.backends.mysql
 DB_NAME=blog_db
-DB_USER=postgres
-DB_PASSWORD=password
-DB_HOST=localhost
-DB_PORT=5432
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=your-rds-endpoint.aliyuncs.com
+DB_PORT=3306
 
-# Redis 配置
-REDIS_URL=redis://localhost:6379/0
+# Redis 配置 (阿里云Redis)
+REDIS_URL=redis://your-redis-endpoint.aliyuncs.com:6379/0
 
 # 邮件配置
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST=smtp.aliyun.com
+EMAIL_PORT=465
+EMAIL_USE_SSL=True
+EMAIL_HOST_USER=your-email@aliyun.com
 EMAIL_HOST_PASSWORD=your-password
-DEFAULT_FROM_EMAIL=noreply@blog.com
+DEFAULT_FROM_EMAIL=noreply@your-domain.com
 ```
 
 #### 前端环境变量 (env.example)
 ```env
 # API配置
-VITE_API_BASE_URL=http://localhost:8000/api
+VITE_API_BASE_URL=https://your-domain.com/api
 VITE_APP_TITLE=我的博客
 VITE_APP_DESCRIPTION=一个现代化的博客系统
 ```
@@ -193,7 +193,42 @@ chore: 构建过程或辅助工具的变动
 
 ## 部署
 
-### Docker 部署（后端）
+### 阿里云 + 宝塔Linux 部署
+
+> 📖 **详细部署指南**: 请参考 [DEPLOYMENT_BT.md](DEPLOYMENT_BT.md) 获取完整的宝塔Linux部署指南。
+
+#### 快速开始
+
+1. **服务器准备**
+   - 购买阿里云ECS服务器（推荐2核4G）
+   - 安装宝塔Linux面板
+   - 安装必要软件：Nginx, Python 3.8+, PostgreSQL, Redis, Node.js
+
+2. **后端部署**
+   - 创建Python项目
+   - 上传代码并安装依赖
+   - 配置环境变量和数据库
+   - 启动Gunicorn服务
+
+3. **前端部署**
+   - 构建前端项目
+   - 配置Nginx反向代理
+   - 设置SSL证书
+
+4. **进程守护**
+   - 配置宝塔进程守护
+   - 设置开机自启
+
+#### 环境要求
+
+- **服务器**: 阿里云ECS (2核4G内存，40G系统盘)
+- **操作系统**: CentOS 7.x 或 Ubuntu 20.04 LTS
+- **Web服务器**: Nginx 1.20+
+- **数据库**: MySQL 8.0+ (或阿里云RDS)
+- **缓存**: Redis 6.0+ (或阿里云Redis)
+- **编程语言**: Python 3.8+, Node.js 16+
+
+### Docker 部署（开发环境）
 
 后端已提供完整的 Docker 配置，位于 `backend/` 目录：
 
@@ -224,13 +259,7 @@ docker-compose down
 
 默认对外暴露端口：
 - 应用服务：`http://localhost:8000`
-- 数据库：`localhost:5432`（用户名/密码：`postgres/postgres`）
-
-### 传统部署
-1. 构建前端项目
-2. 配置后端环境变量
-3. 启动后端服务
-4. 配置反向代理 (Nginx)
+- 数据库：`localhost:3306`（用户名/密码：`root/root`）
 
 ## 贡献指南
 
