@@ -1,15 +1,23 @@
 <template>
   <div id="app">
     <nav class="navbar">
-      <div class="nav-container">
-        <router-link to="/" class="nav-logo">
-          我的博客
-        </router-link>
-        <div class="nav-menu">
-          <router-link to="/" class="nav-link">首页</router-link>
-          <router-link to="/about" class="nav-link">关于</router-link>
-        </div>
+      
+    <div class="nav-container">
+      <router-link to="/" class="nav-logo">我的博客</router-link>
+      <div class="nav-menu">
+        <router-link to="/" class="nav-link">首页</router-link>
+        <router-link to="/blog" class="nav-link">博客</router-link>
+        <router-link to="/post/1" class="nav-link">Post</router-link>
+        <router-link to="/about" class="nav-link">关于</router-link>
+        <form class="nav-search" @submit.prevent>
+          <input type="text" placeholder="搜索..." v-model="searchQuery" class="search-input" />
+        </form>
+        <button class="theme-toggle" @click="toggleTheme">
+          <span v-if="isDark">🌙</span>
+          <span v-else>☀️</span>
+        </button>
       </div>
+    </div>
     </nav>
     
     <main class="main-content">
