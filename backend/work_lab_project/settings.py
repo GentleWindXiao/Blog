@@ -1,5 +1,5 @@
 """
-Django settings for blog_project project.
+Django settings for work_lab_project project.
 """
 
 from pathlib import Path
@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'accounts',
-    'posts',
+    'blogs',
+    'notes',
     'comments',
 ]
 
@@ -41,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'blog_project.urls'
+ROOT_URLCONF = 'work_lab_project.urls'
 
 TEMPLATES = [
     {
@@ -59,13 +60,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'blog_project.wsgi.application'
+WSGI_APPLICATION = 'work_lab_project.wsgi.application'
 
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'lab_db',           # 你的数据库名
+        'USER': 'postgres',         # 数据库用户名
+        'PASSWORD': '123456',# 数据库密码
+        'HOST': 'localhost',        # 数据库地址（如果在本地运行）
+        'PORT': '5432',             # PostgreSQL 默认端口
     }
 }
 

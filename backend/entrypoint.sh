@@ -13,5 +13,5 @@ fi
 
 python manage.py migrate --noinput
 
-exec gunicorn blog_project.wsgi:application \
+exec gunicorn work_lab_project.wsgi:application \
   --config /app/gunicorn.conf.py

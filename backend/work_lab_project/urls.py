@@ -9,7 +9,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('accounts.urls')),
-    path('api/posts/', include('posts.urls')),
+    path('api/blogs/', include('blogs.urls')),
+    path('api/notes/', include('notes.urls')),
     path('api/comments/', include('comments.urls')),
 ]
 
