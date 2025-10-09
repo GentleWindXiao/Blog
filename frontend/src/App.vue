@@ -7,7 +7,7 @@
       <div class="nav-menu">
         <router-link to="/home" class="nav-link">首页</router-link>
         <router-link to="/blog" class="nav-link">博客</router-link>
-        <router-link to="/post/1" class="nav-link">Post</router-link>
+        <router-link to="/note/1" class="nav-link">笔记</router-link>
         <router-link to="/about" class="nav-link">关于</router-link>
         <form class="nav-search" @submit.prevent>
           <input type="text" placeholder="搜索..." v-model="searchQuery" class="search-input" />

@@ -2,11 +2,9 @@
   <div class="home-page">
     <!-- Hero 区 -->
     <Hero />
-
+    <BlogModule/>
     <!-- 模块容器 -->
     <div class="module-container">
-      <!-- Blog 模块 -->
-      <BlogModule />
 
     </div>
   </div>
@@ -14,8 +12,7 @@
 
 <script setup>
 import Hero from '@/components/Home/Hero.vue'
-import BlogModule from '@/components/Home/BlogModule.vue'
-
+import BlogModule from '@/components/Blog/BlogModule.vue'
 </script>
 
 

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p>Blog</p>
+    <BlogList/>
   </div>
 </template>
 
 <script setup>
-
+import BlogList from '@/components/Blog/BlogList.vue';
 </script>
 
 <style scoped>
