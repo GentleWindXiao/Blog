@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
-import markdown
 
 User = get_user_model()
 
@@ -55,7 +54,6 @@ class Blog(models.Model):
     title = models.CharField(max_length=200, verbose_name="标题")
     slug = models.SlugField(max_length=200, unique=True, blank=True, verbose_name="URL标识")
     content_markdown = models.TextField(verbose_name="Markdown内容")
-    content_html = models.TextField(verbose_name="HTML内容", blank=True)
     excerpt = models.TextField(max_length=500, blank=True, verbose_name="摘要")
     featured_image = models.ImageField(upload_to="blogs/", blank=True, null=True, verbose_name="特色图片")
 
@@ -81,8 +79,6 @@ class Blog(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        # 自动将 Markdown 渲染为 HTML
-        self.content_html = markdown.markdown(self.content_markdown)
         super().save(*args, **kwargs)
 
     def __str__(self):

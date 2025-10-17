@@ -11,8 +11,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@iktakahiro/markdown-it-katex": "^4.0.1",
     "@vueuse/core": "^10.7.0",
     "axios": "^1.6.2",
+    "katex": "^0.16.25",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-table-of-contents": "^1.1.0",
     "pinia": "^2.3.1",
     "vue": "^3.4.0",
     "vue-router": "^4.5.1"

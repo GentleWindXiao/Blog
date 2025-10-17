@@ -27,7 +27,7 @@ export const useBlogStore = defineStore('blog', {
       
       try {
         const response = await fetchBlogs()
-        this.blogs = response.data
+        this.blogs = response.data.results
       } catch (error) {
         this.error = error.message || 'Failed to fetch blogs'
         console.error('Error fetching blogs:', error)

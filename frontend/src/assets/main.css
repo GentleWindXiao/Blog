@@ -5,16 +5,44 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f9fa;
-  color: #2c3e50;
-  line-height: 1.6;
+:root {
+  /* 日间模式变量 - 自然护眼风 */
+  --bg-color: #F6F8F3; /* 豆沙白 */
+  --text-color: #404640; /* 深石灰 */
+  --card-bg: #FAFAF8; /* 雾白 */
+  --border-color: #D3D6D1; /* 浅灰雾 */
+  --link-color: #4C8077; /* 海松绿 */
+  --meta-color: #707670; /* 柔灰 */
+  --shadow-color: rgba(0, 0, 0, 0.05); /* 柔和阴影 */
 }
+
+body.dark-theme {
+  /* 夜间模式变量 - 自然护眼风 */
+  --bg-color: #1F2A24; /*深墨绿 */
+  --text-color: #E6EAE7; /* 浅灰白 */
+  --card-bg: #28332E; /* 略亮的深绿 */
+  --border-color: #3A4A42; /* 深绿边框 */
+  --link-color: #6FAE98; /* 青绿色 */
+  --meta-color: #A8B8B0; /* 中等灰 */
+  --shadow-color: rgba(0, 0, 0, 0.15); /* 柔和阴影 */
+  
+  background-image: url('./images/night-background.jpg');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-image: url('./images/day-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.5s ease;
+}
+
 
 #app {
   min-height: 100vh;
@@ -22,9 +50,10 @@ body {
   flex-direction: column;
 }
 
+
 /* 链接样式 */
 a {
-  color: #3498db;
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -36,7 +65,7 @@ a:hover {
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background: #3498db;
+  background: var(--link-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -45,14 +74,14 @@ a:hover {
 }
 
 .btn:hover {
-  background: #2980b9;
+  background: var(--hover-color);
 }
 
 /* 卡片样式 */
 .card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
   padding: 1.5rem;
   margin-bottom: 1rem;
 }

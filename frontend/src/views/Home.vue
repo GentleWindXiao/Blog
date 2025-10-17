@@ -2,11 +2,11 @@
   <div class="home-page">
     <!-- Hero 区 -->
     <Hero />
-    <BlogModule/>
-    <!-- 模块容器 -->
-    <div class="module-container">
-
-    </div>
+    
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+      <BlogModule />
+    </main>
   </div>
 </template>
 
@@ -20,23 +20,13 @@ import BlogModule from '@/components/Blog/BlogModule.vue'
 .home-page {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* 区域间距（区分 Hero 与模块容器） */
-.module-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+.main-content {
+  flex: 1;
+  background: transparent;
 }
 
-/* 模块区通用布局，可承载多个模块 */
-.module-container :deep(.section) {
-  margin-top: 2rem;
-}
 
-@media (max-width: 768px) {
-  .module-container {
-    padding: 1.25rem 1rem 2rem;
-  }
-}
 </style>
